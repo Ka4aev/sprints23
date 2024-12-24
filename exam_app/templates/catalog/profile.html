@@ -1,0 +1,26 @@
+{% extends 'catalog/base_generic.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="profile">
+    <h2 class="profile__username">{{ user.username }}</h2>
+    <div class="profile__details">
+        {% if user.avatar %}
+        <img class="profile__avatar" src="{{ user.avatar.url }}" alt="Аватар">
+        {% endif %}
+        <p class="profile__info">Имя: {{ user.name }}</p>
+        <p class="profile__info">Почта: {{ user.email }}</p>
+    </div>
+    <div class="profile__orders">
+        <h4 class="profile__orders-title">Заказы:</h4>
+        <ul class="profile__orders-list">
+            {% for order in orders %}
+                <li class="profile__orders-item">
+                    {{ order.product.name }} - {{ order.product.price }}: {{ order.created_at }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

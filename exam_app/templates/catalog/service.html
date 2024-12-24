@@ -1,0 +1,28 @@
+{% extends 'catalog/base_generic.html' %}
+
+{% block title %}Каталог товаров{% endblock %}
+
+
+{% block content %}
+<div class="catalog">
+    <h2 class="catalog__title">Каталог:</h2>
+
+{#<form method="get" action="{% url 'home' %}" class="form-inline my-4">#}
+{#    <input type="text" name="search" class="form-control mr-2" placeholder="Поиск по названию...">#}
+{#    <button type="submit" class="btn btn-secondary">Искать</button>#}
+{#</form>#}
+
+    <ul class="catalog__list">
+        {% for product in products %}
+        <li class="catalog__item">
+            <div class="catalog__info">
+                <h3 class="catalog__name">{{ product.name }}</h3>
+                <p class="catalog__price">Цена: {{ product.price }}</p>
+                <p class="catalog__date">Добавлено: {{ product.created_at }}</p>
+                <a href="{% url 'service_detail' product.id %}" class="catalog__link">Перейти</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

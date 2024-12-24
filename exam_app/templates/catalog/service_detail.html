@@ -1,0 +1,26 @@
+{% extends 'catalog/base_generic.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="service-detail">
+    <div class="service-detail__header">
+        <h2 class="service-detail__title">{{ product.name }}</h2>
+    </div>
+    <div class="service-detail__content">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="service-detail__image">
+        <div class="service-detail__info">
+            <p class="service-detail__description">{{ product.description }}</p>
+            <p class="service-detail__price">Цена: {{ product.price }}</p>
+            <p class="service-detail__date">Добавлено: {{ product.created_at }}</p>
+        </div>
+        <form method="POST" action="{% url 'create_order' product.pk %}" class="service-detail__form">
+            {% csrf_token %}
+            <button type="submit" class="service-detail__button">Заказать</button>
+        </form>
+    </div>
+    <div class="service-detail__actions">
+        <a href="{% url 'home' %}" class="service-detail__back-link">Назад к каталогу</a>
+    </div>
+</div>
+{% endblock %}

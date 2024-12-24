@@ -1,0 +1,22 @@
+{% extends 'catalog/base_generic.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="main-page">
+    <h1 class="main-page__title">Добро пожаловать на сайт!</h1>
+    <h2 class="main-page__subtitle">Товары:</h2>
+    <div class="products">
+        {% for product in products %}
+            <div class="product">
+                <h2 class="product__name">{{ product.name }}</h2>
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product__image">
+                <p class="product__description">{{ product.description }}</p>
+                <p class="product__price">Цена: {{ product.price }}</p>
+                <p class="product__date">Дата: {{ product.created_at }}</p>
+                <a href="{% url 'service_detail' product.id%}" class="product__link">Перейти на товар</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
